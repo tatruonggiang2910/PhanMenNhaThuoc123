@@ -1,0 +1,60 @@
+C:\Users\Thai Bao\Desktop\Do_An_CNPM1_new\Do_An_CNPM1 (2)\Do_An_CNPM1\DTO\bin\Debug\DTO.dll
+C:\Users\Thai Bao\Desktop\Do_An_CNPM1_new\Do_An_CNPM1 (2)\Do_An_CNPM1\DTO\bin\Debug\DTO.pdb
+C:\Users\Thai Bao\Desktop\Do_An_CNPM1_new\Do_An_CNPM1 (2)\Do_An_CNPM1\DTO\obj\Debug\DTO.csprojResolveAssemblyReference.cache
+C:\Users\Thai Bao\Desktop\Do_An_CNPM1_new\Do_An_CNPM1 (2)\Do_An_CNPM1\DTO\obj\Debug\DTO.dll
+C:\Users\Thai Bao\Desktop\Do_An_CNPM1_new\Do_An_CNPM1 (2)\Do_An_CNPM1\DTO\obj\Debug\DTO.pdb
+D:\QLNTT_21-52\Do_An_CNPM1\DTO\bin\Debug\DTO.dll
+D:\QLNTT_21-52\Do_An_CNPM1\DTO\bin\Debug\DTO.pdb
+D:\QLNTT_21-52\Do_An_CNPM1\DTO\obj\Debug\DTO.csprojResolveAssemblyReference.cache
+D:\QLNTT_21-52\Do_An_CNPM1\DTO\obj\Debug\DTO.dll
+D:\QLNTT_21-52\Do_An_CNPM1\DTO\obj\Debug\DTO.pdb
+C:\Users\Thai Bao\Desktop\QLNTT_21-5_new\Do_An_CNPM1\DTO\bin\Debug\DTO.dll
+C:\Users\Thai Bao\Desktop\QLNTT_21-5_new\Do_An_CNPM1\DTO\bin\Debug\DTO.pdb
+C:\Users\Thai Bao\Desktop\QLNTT_21-5_new\Do_An_CNPM1\DTO\obj\Debug\DTO.csprojResolveAssemblyReference.cache
+C:\Users\Thai Bao\Desktop\QLNTT_21-5_new\Do_An_CNPM1\DTO\obj\Debug\DTO.dll
+C:\Users\Thai Bao\Desktop\QLNTT_21-5_new\Do_An_CNPM1\DTO\obj\Debug\DTO.pdb
+C:\Users\Thai Bao\Desktop\Do An 24_5\Do_An_CNPM1\DTO\bin\Debug\DTO.dll
+C:\Users\Thai Bao\Desktop\Do An 24_5\Do_An_CNPM1\DTO\bin\Debug\DTO.pdb
+C:\Users\Thai Bao\Desktop\Do An 24_5\Do_An_CNPM1\DTO\obj\Debug\DTO.csprojResolveAssemblyReference.cache
+C:\Users\Thai Bao\Desktop\Do An 24_5\Do_An_CNPM1\DTO\obj\Debug\DTO.dll
+C:\Users\Thai Bao\Desktop\Do An 24_5\Do_An_CNPM1\DTO\obj\Debug\DTO.pdb
+E:\CNPM\Do An 27_5\Do_An_CNPM1\DTO\bin\Debug\DTO.dll
+E:\CNPM\Do An 27_5\Do_An_CNPM1\DTO\bin\Debug\DTO.pdb
+E:\CNPM\Do An 27_5\Do_An_CNPM1\DTO\obj\Debug\DTO.csprojResolveAssemblyReference.cache
+E:\CNPM\Do An 27_5\Do_An_CNPM1\DTO\obj\Debug\DTO.dll
+E:\CNPM\Do An 27_5\Do_An_CNPM1\DTO\obj\Debug\DTO.pdb
+C:\Users\Thai Bao\Desktop\Do An 30_5\Do_An_CNPM1\DTO\bin\Debug\DTO.dll
+C:\Users\Thai Bao\Desktop\Do An 30_5\Do_An_CNPM1\DTO\bin\Debug\DTO.pdb
+C:\Users\Thai Bao\Desktop\Do An 30_5\Do_An_CNPM1\DTO\obj\Debug\DTO.csprojResolveAssemblyReference.cache
+C:\Users\Thai Bao\Desktop\Do An 30_5\Do_An_CNPM1\DTO\obj\Debug\DTO.dll
+C:\Users\Thai Bao\Desktop\Do An 30_5\Do_An_CNPM1\DTO\obj\Debug\DTO.pdb
+E:\CNPM\DoAn_CNPM_6-6_new\DoAn_CNPM_6-6\Do_An_CNPM1\DTO\bin\Debug\DTO.dll
+E:\CNPM\DoAn_CNPM_6-6_new\DoAn_CNPM_6-6\Do_An_CNPM1\DTO\bin\Debug\DTO.pdb
+E:\CNPM\DoAn_CNPM_6-6_new\DoAn_CNPM_6-6\Do_An_CNPM1\DTO\obj\Debug\DTO.csprojResolveAssemblyReference.cache
+E:\CNPM\DoAn_CNPM_6-6_new\DoAn_CNPM_6-6\Do_An_CNPM1\DTO\obj\Debug\DTO.dll
+E:\CNPM\DoAn_CNPM_6-6_new\DoAn_CNPM_6-6\Do_An_CNPM1\DTO\obj\Debug\DTO.pdb
+C:\Users\Thai Bao\Desktop\CNPM_LastVer\DoAn_CNPM_6-6\Do_An_CNPM1\DTO\bin\Debug\DTO.dll
+C:\Users\Thai Bao\Desktop\CNPM_LastVer\DoAn_CNPM_6-6\Do_An_CNPM1\DTO\bin\Debug\DTO.pdb
+C:\Users\Thai Bao\Desktop\CNPM_LastVer\DoAn_CNPM_6-6\Do_An_CNPM1\DTO\obj\Debug\DTO.csprojResolveAssemblyReference.cache
+C:\Users\Thai Bao\Desktop\CNPM_LastVer\DoAn_CNPM_6-6\Do_An_CNPM1\DTO\obj\Debug\DTO.dll
+C:\Users\Thai Bao\Desktop\CNPM_LastVer\DoAn_CNPM_6-6\Do_An_CNPM1\DTO\obj\Debug\DTO.pdb
+E:\CNPM\CNPM_LastVer\CNPM_LastVer\DAMH_NHOM8_2001180275_TaTruongGiang_XayDungPhanMemQuanLyNhaThuoc_All\Do_An_CNPM1\DTO\bin\Debug\DTO.dll
+E:\CNPM\CNPM_LastVer\CNPM_LastVer\DAMH_NHOM8_2001180275_TaTruongGiang_XayDungPhanMemQuanLyNhaThuoc_All\Do_An_CNPM1\DTO\bin\Debug\DTO.pdb
+E:\CNPM\CNPM_LastVer\CNPM_LastVer\DAMH_NHOM8_2001180275_TaTruongGiang_XayDungPhanMemQuanLyNhaThuoc_All\Do_An_CNPM1\DTO\obj\Debug\DTO.csprojResolveAssemblyReference.cache
+E:\CNPM\CNPM_LastVer\CNPM_LastVer\DAMH_NHOM8_2001180275_TaTruongGiang_XayDungPhanMemQuanLyNhaThuoc_All\Do_An_CNPM1\DTO\obj\Debug\DTO.dll
+E:\CNPM\CNPM_LastVer\CNPM_LastVer\DAMH_NHOM8_2001180275_TaTruongGiang_XayDungPhanMemQuanLyNhaThuoc_All\Do_An_CNPM1\DTO\obj\Debug\DTO.pdb
+E:\CNPM\CNPM_LastVer\DAMH_NHOM8_2001180275_TaTruongGiang_XayDungPhanMemQuanLyNhaThuoc_All\QLNT\Do_An_CNPM1\DTO\bin\Debug\DTO.dll
+E:\CNPM\CNPM_LastVer\DAMH_NHOM8_2001180275_TaTruongGiang_XayDungPhanMemQuanLyNhaThuoc_All\QLNT\Do_An_CNPM1\DTO\bin\Debug\DTO.pdb
+E:\CNPM\CNPM_LastVer\DAMH_NHOM8_2001180275_TaTruongGiang_XayDungPhanMemQuanLyNhaThuoc_All\QLNT\Do_An_CNPM1\DTO\obj\Debug\DTO.csprojResolveAssemblyReference.cache
+E:\CNPM\CNPM_LastVer\DAMH_NHOM8_2001180275_TaTruongGiang_XayDungPhanMemQuanLyNhaThuoc_All\QLNT\Do_An_CNPM1\DTO\obj\Debug\DTO.dll
+E:\CNPM\CNPM_LastVer\DAMH_NHOM8_2001180275_TaTruongGiang_XayDungPhanMemQuanLyNhaThuoc_All\QLNT\Do_An_CNPM1\DTO\obj\Debug\DTO.pdb
+C:\Users\Thai Bao\Desktop\CNPM\CNPM\Do_An_CNPM1\DTO\bin\Debug\DTO.dll
+C:\Users\Thai Bao\Desktop\CNPM\CNPM\Do_An_CNPM1\DTO\bin\Debug\DTO.pdb
+C:\Users\Thai Bao\Desktop\CNPM\CNPM\Do_An_CNPM1\DTO\obj\Debug\DTO.csprojResolveAssemblyReference.cache
+C:\Users\Thai Bao\Desktop\CNPM\CNPM\Do_An_CNPM1\DTO\obj\Debug\DTO.dll
+C:\Users\Thai Bao\Desktop\CNPM\CNPM\Do_An_CNPM1\DTO\obj\Debug\DTO.pdb
+C:\Users\Thai Bao\Desktop\PTPM\PTPM\Do_An_PTPM\DTO\bin\Debug\DTO.dll
+C:\Users\Thai Bao\Desktop\PTPM\PTPM\Do_An_PTPM\DTO\bin\Debug\DTO.pdb
+C:\Users\Thai Bao\Desktop\PTPM\PTPM\Do_An_PTPM\DTO\obj\Debug\DTO.csprojResolveAssemblyReference.cache
+C:\Users\Thai Bao\Desktop\PTPM\PTPM\Do_An_PTPM\DTO\obj\Debug\DTO.dll
+C:\Users\Thai Bao\Desktop\PTPM\PTPM\Do_An_PTPM\DTO\obj\Debug\DTO.pdb

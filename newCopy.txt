@@ -1,0 +1,943 @@
+CREATE DATABASE QLNTTDA
+USE QLNTTDA
+GO
+
+CREATE TABLE NHOMNHANVIEN(
+	MANHOMNV varchar(10) NOT NULL PRIMARY KEY,
+	TENNHOM nvarchar(500) NULL,
+)
+
+
+CREATE TABLE DANHMUCMANHINH(
+	MADMMH varchar(10) NOT NULL PRIMARY KEY,
+	TENMANHINH nvarchar(500) NOT NULL,
+)
+
+CREATE TABLE PHANQUYEN(
+	MANHOMNV varchar(10) NOT NULL,
+	MADMMH varchar(10) NOT NULL,
+	COQUYEN bit,					 -- 0 nhân viên, 1 quản lý
+	PRIMARY KEY(MANHOMNV, MADMMH)
+)
+
+CREATE TABLE NHANVIEN
+(
+	MANV varchar(10) NOT NULL PRIMARY KEY,
+	MANHOMNV VARCHAR(10) NOT NULL,
+	TENDANGNHAP NVARCHAR(500) NOT NULL,
+	MATKHAU NVARCHAR(500) NOT NULL,
+	HOTENNV NVARCHAR(500) NOT NULL,
+	GIOITINHNV NVARCHAR(50) NULL,
+	NGAYSINHNV DATETIME NULL,
+	DIACHINV NVARCHAR(500) NULL,
+	SODIENTHOAINV VARCHAR(15) NULL,
+	CHUNGMINHTHU VARCHAR(10) NULL,
+	NGAYBATDAULAMVIEC datetime NOT NULL,
+	NGAYKETTHUCLAMVIEC datetime NULL,
+	TRINHDOHOCVAN NVARCHAR(500) NOT NULL,
+	MUCLUONGCOBAN DECIMAL(18, 0) NOT NULL,
+)
+
+
+CREATE TABLE BANGLUONG(
+	MABANGLUONG varchar(10) NOT NULL,
+	MANV varchar(10) NOT NULL,
+	LUONGTHUCTE decimal(18, 0) NOT NULL,
+	NGAYAPDUNG date NOT NULL,
+	GHICHUBL nvarchar(500) NULL,
+	PRIMARY KEY(MABANGLUONG, MANV)
+)
+---ngayapdung = ngaybatdaulam (nhanvien)
+-- GHICHUBANGLUONG 13 tháng lương cho nhanvien tốt, hoa hồng cho ql
+
+
+CREATE TABLE CHAMCONG(
+	MANV varchar(10) NOT NULL ,
+	MACHAMCONG varchar(10) NOT NULL,
+	THANG INT NOT NULL,
+	NAM INT NOT NULL,
+	SONGAYLAMVIEC int NOT NULL,
+	PRIMARY KEY(MACHAMCONG, MANV)
+)
+
+CREATE TABLE BACLUONG(
+	MABAC varchar(10) NOT NULL PRIMARY KEY,
+	TENBAC nvarchar(500) NOT NULL,
+	HESO FLOAT NOT NULL,
+)
+
+CREATE TABLE CHITIETBACLUONG(
+	MABAC varchar(10) NOT NULL,
+	MANV varchar(10) NOT NULL,
+	TUNGAY date NOT NULL,
+	DENNGAY date NOT NULL,
+	PRIMARY KEY(MABAC, MANV)
+)
+
+CREATE TABLE KHACHHANG(
+	MAKH varchar(10) NOT NULL PRIMARY KEY,
+	MATINHTHANH VARCHAR(10),
+	HOTENKH nvarchar(500) NULL,
+	LOAIKHACHHANG nvarchar(500) NOT NULL,
+	NGAYSINHKH date NULL,
+	GIOITINHKH nchar(10) NOT NULL,
+	DIACHIKH nvarchar(500) NULL,
+	SODIENTHOAIKH varchar(15) NOT NULL,
+)
+
+
+CREATE TABLE TINHTHANH(
+	MATINHTHANH VARCHAR(10) NOT NULL PRIMARY KEY,
+	TENTINHTHANH NVARCHAR(500)
+)
+
+CREATE TABLE QUANHUYEN(
+	MAQUANHUYEN VARCHAR(10) NOT NULL PRIMARY KEY,
+	MATINHTHANH VARCHAR(10),
+	TENQUANHUYEN NVARCHAR(500),
+)
+
+CREATE TABLE NHACUNGCAP(
+	MANCC VARCHAR(10) NOT NULL PRIMARY KEY,
+	MATINHTHANH VARCHAR(10),
+	TENNHACUNGCAP NVARCHAR(500),
+	DIACHI NVARCHAR(500),
+	SDT VARCHAR(15),
+)
+
+
+CREATE TABLE HOADONBAN(
+	MAHDB varchar(10) NOT NULL PRIMARY KEY,
+	MAKH varchar(10) NOT NULL,
+	MANV varchar(10) NOT NULL,
+	NGAYLAPBAN date NOT NULL,
+	VAT float NOT NULL,
+	TONGTIENBAN decimal(18, 0) NOT NULL,
+)
+
+CREATE TABLE CHITIETHOADONBAN(
+	MAHDB varchar(10) NOT NULL,
+	MATHUOC varchar(10) NOT NULL,
+	SOLUONGBAN int NOT NULL,
+	THANHTIENBAN decimal(18, 0) NOT NULL,
+	PRIMARY KEY(MAHDB, MATHUOC)
+)
+
+
+CREATE TABLE HANGSANXUAT(
+	MAHSX VARCHAR(10) NOT NULL PRIMARY KEY,
+	TENHSX NVARCHAR(500),
+)
+
+
+CREATE TABLE XUATXU(
+	MAXUATXU VARCHAR(10) NOT NULL PRIMARY KEY,
+	TENXUATXU NVARCHAR(500),
+	LOAIXUATXU NVARCHAR(500),
+)
+
+CREATE TABLE LOAITHUOC(
+	MALOAITHUOC varchar(10) NOT NULL PRIMARY KEY,
+	MAKE varchar(10) NOT NULL,
+	TENLOAITHUOC nvarchar(500) NOT NULL,
+)
+
+CREATE TABLE THUOC(
+	MATHUOC varchar(10) NOT NULL PRIMARY KEY,
+	MALOAITHUOC varchar(10) NOT NULL,
+	MAHSX VARCHAR(10) NOT NULL,
+	MAXUATXU VARCHAR(10) NOT NULL,
+	TENTHUOC nvarchar(500) NOT NULL,
+	HINHTHUOC nvarchar(500),
+	THANHPHAN nvarchar(500) NULL,
+	CONGDUNG nvarchar(500) NULL,
+	BAOQUAN nvarchar(500) NULL,
+	GHICHUTHUOC nvarchar(500) NULL,
+	DVT nvarchar(500) NOT NULL,
+	SOLOTHUOC int NOT NULL,
+	NGAYSANXUAT date NOT NULL,
+	HANSUDUNG date NOT NULL,
+	DONGIATHUOC decimal(18, 0) NOT NULL,
+	SOLUONGTON int NOT NULL,
+)
+
+CREATE TABLE KETHUOC(
+	MAKE varchar(10) NOT NULL PRIMARY KEY,
+	TENKE nvarchar(500) NOT NULL,
+)
+
+
+CREATE TABLE PHIEUNHAPTHUOC(
+	MAPNT varchar(10) NOT NULL PRIMARY KEY,
+	MANCC VARCHAR(10) NOT NULL,
+	NGAYNHAPTHUOC date NOT NULL,
+	GHICHUNT nvarchar(500) NULL,
+	TRANGTHAI nvarchar(20) NULL,
+	TONGTIEN decimal(18, 0) NULL,
+)
+
+CREATE TABLE CHITIETPHIEUNHAPTHUOC(
+	MAPNT varchar(10) NOT NULL,
+	MATHUOC varchar(10) NOT NULL,
+	SOLUONGNHAPTHUOC int NOT NULL,
+	DVT nvarchar(500) NOT NULL,
+	THANHTIENNT decimal(18, 0) NOT NULL,
+	DONGIABAN decimal(18, 0) NULL,
+	PRIMARY KEY(MAPNT, MATHUOC)
+)
+
+
+-----------------------------------KHÓA NGOẠI-------------------------------------------
+--PHÂN QUYỀN
+ALTER TABLE PHANQUYEN
+ADD CONSTRAINT FK_PQ_NNV FOREIGN KEY(MANHOMNV) REFERENCES NHOMNHANVIEN(MANHOMNV)
+
+ALTER TABLE PHANQUYEN
+ADD CONSTRAINT FK_QL_DMMH FOREIGN KEY(MADMMH) REFERENCES DANHMUCMANHINH(MADMMH)
+
+--CHẤM CÔNG
+ALTER TABLE CHAMCONG
+ADD CONSTRAINT FK_CC_NV FOREIGN KEY(MANV) REFERENCES NHANVIEN(MANV)
+
+--BANGLUONG
+ALTER TABLE BANGLUONG
+ADD CONSTRAINT FK_BL_NV FOREIGN KEY(MANV) REFERENCES NHANVIEN(MANV)
+
+--CHI TIẾT BẬC LƯƠNG
+ALTER TABLE CHITIETBACLUONG
+ADD CONSTRAINT FK_CTBL_BL FOREIGN KEY(MABAC) REFERENCES BACLUONG(MABAC)
+
+ALTER TABLE CHITIETBACLUONG
+ADD CONSTRAINT FK_CTBL_NV FOREIGN KEY(MANV) REFERENCES NHANVIEN(MANV)
+
+
+--HÓA ĐƠN BÁN
+ALTER TABLE HOADONBAN
+ADD CONSTRAINT FK_HDB_NV FOREIGN KEY(MANV) REFERENCES NHANVIEN(MANV)
+
+ALTER TABLE HOADONBAN
+ADD CONSTRAINT FK_HDB_KH FOREIGN KEY(MAKH) REFERENCES KHACHHANG(MAKH)
+
+--CHI TIẾT HÓA ĐƠN BÁN
+ALTER TABLE CHITIETHOADONBAN
+ADD CONSTRAINT FK_CTHDB_HDB FOREIGN KEY(MAHDB) REFERENCES HOADONBAN(MAHDB)
+
+ALTER TABLE CHITIETHOADONBAN
+ADD CONSTRAINT FK_CTHDB_T FOREIGN KEY(MATHUOC) REFERENCES THUOC(MATHUOC)
+
+--THUỐC
+ALTER TABLE THUOC
+ADD CONSTRAINT FK_T_LT FOREIGN KEY(MALOAITHUOC) REFERENCES LOAITHUOC(MALOAITHUOC)
+
+ALTER TABLE THUOC
+ADD CONSTRAINT FK_T_HSX FOREIGN KEY(MAHSX) REFERENCES HANGSANXUAT(MAHSX)
+
+ALTER TABLE THUOC
+ADD CONSTRAINT FK_T_XX FOREIGN KEY(MAXUATXU) REFERENCES XUATXU(MAXUATXU)
+
+--LOẠI THUỐC
+ALTER TABLE LOAITHUOC
+ADD CONSTRAINT FK_LT_KT FOREIGN KEY(MAKE) REFERENCES KETHUOC(MAKE)
+
+--CHI TIẾT PHIẾU NHẬP THUỐC
+
+ALTER TABLE CHITIETPHIEUNHAPTHUOC
+ADD CONSTRAINT FK_CTPNT_T FOREIGN KEY(MATHUOC) REFERENCES THUOC(MATHUOC)
+
+ALTER TABLE CHITIETPHIEUNHAPTHUOC
+ADD CONSTRAINT FK_CTPNT_PNT FOREIGN KEY(MAPNT) REFERENCES PHIEUNHAPTHUOC(MAPNT)
+
+--KHÁCH HÀNG
+ALTER TABLE KHACHHANG
+ADD CONSTRAINT FK_KH_TT FOREIGN KEY(MATINHTHANH) REFERENCES TINHTHANH(MATINHTHANH)
+
+--TỈNH THÀNH
+ALTER TABLE QUANHUYEN
+ADD CONSTRAINT FK_QH_TT FOREIGN KEY(MATINHTHANH) REFERENCES TINHTHANH(MATINHTHANH)
+
+--NHÀ CUNG CẤP
+ALTER TABLE NHACUNGCAP
+ADD CONSTRAINT FK_NCC_TT FOREIGN KEY(MATINHTHANH) REFERENCES TINHTHANH(MATINHTHANH)
+
+--------------------------------------CHECK, DEFAULT,UNIQUE------------------------------------
+
+ALTER TABLE NHOMNHANVIEN
+ADD CONSTRAINT NNV_TENNHOM UNIQUE(TENNHOM)
+
+ALTER TABLE PHANQUYEN
+ADD CONSTRAINT PHANQUYEN_COQUYEN CHECK(COQUYEN='0' OR COQUYEN='1')
+
+ALTER TABLE NHANVIEN
+ADD CONSTRAINT NV_TENDANGNHAP UNIQUE(TENDANGNHAP)
+
+ALTER TABLE NHANVIEN
+ADD CONSTRAINT NV_NGAYKETTHUCLAMVIEC DEFAULT GETDATE() FOR NGAYKETTHUCLAMVIEC
+
+ALTER TABLE NHANVIEN
+ADD CONSTRAINT NV_NGAYBATDAULAMVIEC DEFAULT GETDATE() FOR NGAYBATDAULAMVIEC
+
+ALTER TABLE NHANVIEN
+ADD CONSTRAINT NV_CHUNGMINHTHU UNIQUE(CHUNGMINHTHU)
+
+ALTER TABLE NHANVIEN
+ADD CONSTRAINT NV_GIOITINHNV CHECK(GIOITINHNV = N'Nữ' OR GIOITINHNV= N'Nam' OR GIOITINHNV=N'Khác')
+
+ALTER TABLE NHANVIEN
+ADD CONSTRAINT NV_TRINHDOHOCVAN CHECK(TRINHDOHOCVAN = N'Trung Cấp' OR TRINHDOHOCVAN= N'Cao Đẳng' OR TRINHDOHOCVAN=N'Đại Học' OR TRINHDOHOCVAN=N'Thạc Sĩ')
+
+ALTER TABLE NHANVIEN
+ADD CONSTRAINT NV_MUCLUONGCOBAN CHECK(MUCLUONGCOBAN >= 2000000 )
+
+
+ALTER TABLE BANGLUONG
+ADD CONSTRAINT BL_LUONGTHUCTE CHECK(LUONGTHUCTE >= 2000000 )
+
+ALTER TABLE BANGLUONG
+ADD CONSTRAINT BL_NGAYAPDUNG DEFAULT GETDATE() FOR NGAYAPDUNG
+
+ALTER TABLE CHITIETBACLUONG
+ADD CONSTRAINT CTBL_TUNGAY DEFAULT GETDATE() FOR TUNGAY
+
+ALTER TABLE CHITIETBACLUONG
+ADD CONSTRAINT CTBL_DENNGAY DEFAULT GETDATE() FOR DENNGAY
+
+ALTER TABLE QUANHUYEN
+ADD CONSTRAINT QH_TENQUANHUYEN UNIQUE(TENQUANHUYEN)
+
+ALTER TABLE NHACUNGCAP
+ADD CONSTRAINT NCC_TENNCC UNIQUE(TENNHACUNGCAP)
+
+ALTER TABLE THUOC
+ADD CONSTRAINT THUOC_TENTHUOC UNIQUE(TENTHUOC)
+
+ALTER TABLE KHACHHANG
+ADD CONSTRAINT KH_GIOITINHKH CHECK(GIOITINHKH = N'Nữ' OR GIOITINHKH= N'Nam' OR GIOITINHKH=N'Khác')
+
+ALTER TABLE THUOC
+ADD CONSTRAINT THUOC_DONGIA CHECK(DONGIATHUOC > 0 )
+
+ALTER TABLE PHIEUNHAPTHUOC
+ADD CONSTRAINT NGAYNHAPTHUOC_CTPN DEFAULT GETDATE() FOR NGAYNHAPTHUOC
+
+--- kiểm tra tuổi trước khi thêm vào
+
+CREATE TRIGGER KTTUOI ON NHANVIEN
+   AFTER INSERT
+AS
+ BEGIN
+ DECLARE @TUOINV_MOI INT
+ SET @TUOINV_MOI = ( SELECT YEAR(GETDATE())-YEAR(NGAYSINHNV) from inserted)
+ IF (@TUOINV_MOI < 18)
+     BEGIN 
+            RAISERROR (N'NHÂN VIÊN PHẢI LỚN HƠN 18 TUỔI',16,1)
+     END
+END
+GO
+
+-------------------------------------------DỮ LIỆU---------------------------------------------
+
+insert into NHOMNHANVIEN(MANHOMNV, TENNHOM)
+values ('QLTT',N'Quản lý tiệm thuốc')
+
+insert into NHOMNHANVIEN(MANHOMNV, TENNHOM)
+values ('NVBT',N'Nhân viên bán thuốc')
+
+insert into NHOMNHANVIEN(MANHOMNV, TENNHOM)
+values ('NVTV',N'Nhân viên tư vấn')
+
+--==========================================NHÂN VIÊN===============================================
+
+set dateformat dmy;
+insert into NHANVIEN(MANV, MANHOMNV, TENDANGNHAP, MATKHAU, HOTENNV, GIOITINHNV, NGAYSINHNV, DIACHINV, SODIENTHOAINV, CHUNGMINHTHU, NGAYBATDAULAMVIEC, NGAYKETTHUCLAMVIEC, TRINHDOHOCVAN, MUCLUONGCOBAN)
+values ('NV01','QLTT','giangtt','123',N'Tạ Trường Giang',N'Nam','03-05-2000',N'Bình Dương','0946788406','340692492','11-01-2019','04-09-2020',N'Thạc sĩ',11000000)
+
+insert into NHANVIEN(MANV, MANHOMNV, TENDANGNHAP, MATKHAU, HOTENNV, GIOITINHNV, NGAYSINHNV, DIACHINV, SODIENTHOAINV, CHUNGMINHTHU, NGAYBATDAULAMVIEC, NGAYKETTHUCLAMVIEC, TRINHDOHOCVAN, MUCLUONGCOBAN)
+values ('NV02','QLTT','baont','123',N'Nguyễn Thái Bảo',N'Nam','08-05-2000',N'Đồng Tháp','0868487136','342305311','18-03-2019','22-05-2020',N'Thạc sĩ',11000000)
+
+insert into NHANVIEN(MANV, MANHOMNV, TENDANGNHAP, MATKHAU, HOTENNV, GIOITINHNV, NGAYSINHNV, DIACHINV, SODIENTHOAINV, CHUNGMINHTHU, NGAYBATDAULAMVIEC, NGAYKETTHUCLAMVIEC, TRINHDOHOCVAN, MUCLUONGCOBAN)
+values ('NV03','NVBT','khangnh','123',N'Nguyễn Hoài Khang',N'Nam','22-05-2000',N'TPHCM','0835456270','340773775','14-08-2018','09-12-2020',N'Đại học',6000000)
+
+insert into NHANVIEN(MANV, MANHOMNV, TENDANGNHAP, MATKHAU, HOTENNV, GIOITINHNV, NGAYSINHNV, DIACHINV, SODIENTHOAINV, CHUNGMINHTHU, NGAYBATDAULAMVIEC, NGAYKETTHUCLAMVIEC, TRINHDOHOCVAN, MUCLUONGCOBAN)
+values ('NV04','NVBT','thachhn','123',N'Huỳnh Ngọc Thạch',N'Nam','18-09-2000',N'TPHCM','0918353686','341252221','02-11-2018','27-07-2021',N'Đại học',6000000)
+
+insert into NHANVIEN(MANV, MANHOMNV, TENDANGNHAP, MATKHAU, HOTENNV, GIOITINHNV, NGAYSINHNV, DIACHINV, SODIENTHOAINV, CHUNGMINHTHU, NGAYBATDAULAMVIEC, NGAYKETTHUCLAMVIEC, TRINHDOHOCVAN, MUCLUONGCOBAN)
+values ('NV05','NVBT','myntn','123',N'Nguyễn Thị Ngọc Mỹ',N'Nữ','06-10-2000',N'Đồng Tháp','0889131006','34203831','22-04-2017','20-11-2018',N'Đại học',6000000)
+
+insert into NHANVIEN(MANV, MANHOMNV, TENDANGNHAP, MATKHAU, HOTENNV, GIOITINHNV, NGAYSINHNV, DIACHINV, SODIENTHOAINV, CHUNGMINHTHU, NGAYBATDAULAMVIEC, NGAYKETTHUCLAMVIEC, TRINHDOHOCVAN, MUCLUONGCOBAN)
+values ('NV06','NVTV','thuna','123',N'Nguyễn Anh Thư',N'Nữ','29-04-2000',N'Kiên Giang','0961327210','342032091','01-06-2018','15-03-2020',N'Đại học',6000000)
+
+insert into NHANVIEN(MANV, MANHOMNV, TENDANGNHAP, MATKHAU, HOTENNV, GIOITINHNV, NGAYSINHNV, DIACHINV, SODIENTHOAINV, CHUNGMINHTHU, NGAYBATDAULAMVIEC, NGAYKETTHUCLAMVIEC, TRINHDOHOCVAN, MUCLUONGCOBAN)
+values ('NV07','NVTV','quanlh','123',N'Lê Hoàng Quân',N'Nam','12-12-2000',N'Vĩnh Long','0932789201','341339553','23-02-2018','16-03-2020',N'Cao đẳng',4000000)
+
+insert into NHANVIEN(MANV, MANHOMNV, TENDANGNHAP, MATKHAU, HOTENNV, GIOITINHNV, NGAYSINHNV, DIACHINV, SODIENTHOAINV, CHUNGMINHTHU, NGAYBATDAULAMVIEC, NGAYKETTHUCLAMVIEC, TRINHDOHOCVAN, MUCLUONGCOBAN)
+values ('NV08','NVTV','tantq','123',N'Trần Quốc Tấn',N'Nam','07-08-2000',N'Tây Ninh','0939098248','341995778','06-07-2018','12-10-2020',N'Cao đẳng',4000000)
+
+--==========================================BẢNG LƯƠNG===============================================
+
+
+set dateformat dmy;
+insert into BANGLUONG (MABANGLUONG, MANV, LUONGTHUCTE, NGAYAPDUNG, GHICHUBL) 
+values ('BL01','NV01',11000000,'11-01-2019',N'Hoa hồng')
+
+insert into BANGLUONG (MABANGLUONG, MANV, LUONGTHUCTE, NGAYAPDUNG, GHICHUBL) 
+values ('BL01','NV03',5500000,'14-08-2018',N'13 tháng')
+
+insert into BANGLUONG (MABANGLUONG, MANV, LUONGTHUCTE, NGAYAPDUNG, GHICHUBL) 
+values ('BL02','NV05',5500000,'22-04-2017',N'13 tháng')
+
+insert into BANGLUONG (MABANGLUONG, MANV, LUONGTHUCTE, NGAYAPDUNG) 
+values ('BL02','NV07',3500000,'23-02-2018')
+
+insert into BANGLUONG (MABANGLUONG, MANV, LUONGTHUCTE, NGAYAPDUNG) 
+values ('BL03','NV08',3500000,'06-07-2018')
+
+--========================================CHẤM CÔNG================================================
+
+
+insert into CHAMCONG (MANV, MACHAMCONG, THANG, NAM, SONGAYLAMVIEC)
+values ('NV02','CC01',9,2020,22)
+
+insert into CHAMCONG (MANV, MACHAMCONG, THANG, NAM, SONGAYLAMVIEC)
+values ('NV04','CC02',3,2021,29)
+
+insert into CHAMCONG (MANV, MACHAMCONG, THANG, NAM, SONGAYLAMVIEC)
+values ('NV06','CC03',12,2018,29)
+
+insert into CHAMCONG (MANV, MACHAMCONG, THANG, NAM, SONGAYLAMVIEC)
+values ('NV08','CC04',5,2019,25)
+
+insert into CHAMCONG (MANV, MACHAMCONG, THANG, NAM, SONGAYLAMVIEC)
+values ('NV01','CC05',6,2020,27)
+
+--=======================================BẬC LƯƠNG===================================================
+
+insert into BACLUONG (MABAC, TENBAC, HESO)
+values ('B4',N'Bậc 4',6.92)
+
+insert into BACLUONG (MABAC, TENBAC, HESO)
+values ('B3',N'Bậc 3',6.44)
+
+insert into BACLUONG (MABAC, TENBAC, HESO)
+values ('B2',N'Bậc 2',4.98)
+
+insert into BACLUONG (MABAC, TENBAC, HESO)
+values ('B1',N'Bậc 1',2.32)
+
+
+--========================================CHI TIẾT BẬC LƯƠNG========================================================
+
+set dateformat dmy;
+insert into CHITIETBACLUONG (MABAC, MANV, TUNGAY, DENNGAY)
+values ('B4','NV01','11-01-2019','11-04-2019')
+
+insert into CHITIETBACLUONG (MABAC, MANV, TUNGAY, DENNGAY)
+values ('B3','NV03','14-08-2018','14-11-2018')
+
+insert into CHITIETBACLUONG (MABAC, MANV, TUNGAY, DENNGAY)
+values ('B3','NV05','22-04-2017','22-07-2017')
+
+insert into CHITIETBACLUONG (MABAC, MANV, TUNGAY, DENNGAY)
+values ('B2','NV07','23-02-2018','23-05-2018')
+
+insert into CHITIETBACLUONG (MABAC, MANV, TUNGAY, DENNGAY)
+values ('B2','NV08','06-07-2018','06-10-2018')
+
+--====================================QUẬN HUYỆNH============================================
+
+insert into QUANHUYEN (MAQUANHUYEN, MATINHTHANH,TENQUANHUYEN)
+values ('15','02', N'Quận Tân Phú')
+
+insert into QUANHUYEN (MAQUANHUYEN,MATINHTHANH, TENQUANHUYEN)
+values ('03', '04',N'Quận Sơn Trà')
+
+insert into QUANHUYEN (MAQUANHUYEN, MATINHTHANH,TENQUANHUYEN)
+values ('02', '46',N'Huyện Tân Biên')
+
+insert into QUANHUYEN (MAQUANHUYEN, MATINHTHANH,TENQUANHUYEN)
+values ('01', '57',N'Huyện Tam Bình')
+
+insert into QUANHUYEN (MAQUANHUYEN, MATINHTHANH,TENQUANHUYEN)
+values ('08','02', N'Huyện Bình Tân')
+--==================================TỈNH THÀNH===============================================
+
+insert into TINHTHANH (MATINHTHANH, TENTINHTHANH)
+values ('02',N'TPHCM')
+
+insert into TINHTHANH (MATINHTHANH, TENTINHTHANH)
+values ('57',N'Vĩnh Long')
+
+insert into TINHTHANH (MATINHTHANH, TENTINHTHANH)
+values ('04',N'Đà Nẵng')
+
+insert into TINHTHANH (MATINHTHANH, TENTINHTHANH)
+values ('46',N'Tây Ninh')
+
+insert into TINHTHANH (MATINHTHANH, TENTINHTHANH)
+values ('50',N'Đồng Tháp')
+
+--===================================KHÁCH HÀNG============================================
+
+
+set dateformat dmy;
+insert into KHACHHANG (MAKH, MATINHTHANH, HOTENKH, LOAIKHACHHANG, NGAYSINHKH, GIOITINHKH, DIACHIKH, SODIENTHOAIKH)
+values ('KH01','02',N'Hoàng Minh Tú',N'Sinh viên','12-12-2015',N'Nam',N'TPHCM','0943359354')
+
+insert into KHACHHANG (MAKH, MATINHTHANH, HOTENKH, LOAIKHACHHANG, NGAYSINHKH, GIOITINHKH, DIACHIKH, SODIENTHOAIKH)
+values ('KH02','04',N'Mai Hồng Ngọc',N'Học sinh','13-04-2003',N'Nữ',N'Đà Nẵng','0901286445')
+
+insert into KHACHHANG (MAKH, MATINHTHANH, HOTENKH, LOAIKHACHHANG, NGAYSINHKH, GIOITINHKH, DIACHIKH, SODIENTHOAIKH)
+values ('KH03','46',N'Trần Quốc Khánh',N'Nội trợ','27-08-1990',N'Nam',N'Tây Ninh','0866222445')
+
+insert into KHACHHANG (MAKH, MATINHTHANH, HOTENKH, LOAIKHACHHANG, NGAYSINHKH, GIOITINHKH, DIACHIKH, SODIENTHOAIKH)
+values ('KH04','50',N'Cao Tuấn Vũ',N'Đi làm','02-10-1986',N'Nam',N'Đồng Tháp','0969679695')
+
+insert into KHACHHANG (MAKH, MATINHTHANH, HOTENKH, LOAIKHACHHANG, NGAYSINHKH, GIOITINHKH, DIACHIKH, SODIENTHOAIKH)
+values ('KH05','57',N'Trịnh Văn Sơn',N'Lớn tuổi','09-06-1976',N'Nam',N'Vĩnh Long','0335470986')
+
+
+--==================================NHÀ CUNG CẤP========================================
+insert into NHACUNGCAP (MANCC, MATINHTHANH, TENNHACUNGCAP, DIACHI, SDT)
+values ('PHARMACY','02',N'CÔNG TY CỔ PHẦN PHARMALAND',N'2/21 Quách Văn Tuấn, P.12, Q.Tân Bình, TPHCM','62621452')
+
+insert into NHACUNGCAP (MANCC, MATINHTHANH, TENNHACUNGCAP, DIACHI, SDT)
+values ('DIFOCO','02',N'Công Ty Cổ Phần Difoco',N'289 Đinh Bộ Lĩnh, P.26, Q.Bình Thạnh, TPHCM','66857787')
+
+--====================================HÓA ĐƠN BÁN=============================================
+
+set dateformat dmy;
+insert into HOADONBAN (MAHDB, MAKH, MANV, NGAYLAPBAN, VAT, TONGTIENBAN)
+values ('HD01','KH02','NV03','08-10-2020',14705,35000)
+
+insert into HOADONBAN (MAHDB, MAKH, MANV, NGAYLAPBAN, VAT, TONGTIENBAN)
+values ('HD02','KH01','NV08','09-05-2019',16097,77000)
+
+insert into HOADONBAN (MAHDB, MAKH, MANV, NGAYLAPBAN, VAT, TONGTIENBAN)
+values ('HD03','KH04','NV05','13-07-2018',30816,52000)
+
+insert into HOADONBAN (MAHDB, MAKH, MANV, NGAYLAPBAN, VAT, TONGTIENBAN)
+values ('HD04','KH03','NV02','26-04-2019',51025,68000)
+
+insert into HOADONBAN (MAHDB, MAKH, MANV, NGAYLAPBAN, VAT, TONGTIENBAN)
+values ('HD05','KH05','NV07','22-02-2020',45906,97000)
+
+insert into HOADONBAN (MAHDB, MAKH, MANV, NGAYLAPBAN, VAT, TONGTIENBAN)
+values ('HD06','KH02','NV02','09-02-2020',67040,258000)
+
+insert into HOADONBAN (MAHDB, MAKH, MANV, NGAYLAPBAN, VAT, TONGTIENBAN)
+values ('HD07','KH04','NV08','03-01-2020',17102,174000)
+
+insert into HOADONBAN (MAHDB, MAKH, MANV, NGAYLAPBAN, VAT, TONGTIENBAN)
+values ('HD08','KH01','NV03','20-11-2019',86529,254000)
+
+insert into HOADONBAN (MAHDB, MAKH, MANV, NGAYLAPBAN, VAT, TONGTIENBAN)
+values ('HD09','KH05','NV07','07-02-2020',69508,156000)
+
+insert into HOADONBAN (MAHDB, MAKH, MANV, NGAYLAPBAN, VAT, TONGTIENBAN)
+values ('HD10','KH03','NV04','22-03-2020',83923,115000)
+
+insert into HOADONBAN (MAHDB, MAKH, MANV, NGAYLAPBAN, VAT, TONGTIENBAN)
+values ('HD11','KH04','NV01','25-09-2020',93967,226000)
+
+insert into HOADONBAN (MAHDB, MAKH, MANV, NGAYLAPBAN, VAT, TONGTIENBAN)
+values ('HD12','KH02','NV06','14-06-2019',63898,291000)
+
+--=================================CHI TIẾT HÓA ĐƠN==========================================
+
+insert into CHITIETHOADONBAN (MAHDB, MATHUOC, SOLUONGBAN, THANHTIENBAN)
+values ('HD09','S01B01',3,690000)
+
+insert into CHITIETHOADONBAN (MAHDB, MATHUOC, SOLUONGBAN, THANHTIENBAN)
+values ('HD05','A02B03',3,270000)
+
+insert into CHITIETHOADONBAN (MAHDB, MATHUOC, SOLUONGBAN, THANHTIENBAN)
+values ('HD12','C01E03',4,520000)
+
+insert into CHITIETHOADONBAN (MAHDB, MATHUOC, SOLUONGBAN, THANHTIENBAN)
+values ('HD01','D06A12',2,300000)
+
+insert into CHITIETHOADONBAN (MAHDB, MATHUOC, SOLUONGBAN, THANHTIENBAN)
+values ('HD11','N02B01',1,265000)
+
+insert into CHITIETHOADONBAN (MAHDB, MATHUOC, SOLUONGBAN, THANHTIENBAN)
+values ('HD03','R05C05',2,360000)
+
+insert into CHITIETHOADONBAN (MAHDB, MATHUOC, SOLUONGBAN, THANHTIENBAN)
+values ('HD08','S01B06',1,250000)
+
+
+--================================HÃNG SẢN XUẤT=============================================
+
+insert into HANGSANXUAT (MAHSX, TENHSX)
+values ('TRAPHACO',N'Công ty Cổ phần Traphaco')
+
+insert into HANGSANXUAT (MAHSX, TENHSX)
+values ('PHARMA',N'Công ty Cổ phần Dược Hậu Giang')
+
+insert into HANGSANXUAT (MAHSX, TENHSX)
+values ('NAMHA',N'Công ty Cổ phần dược phẩm Nam Hà')
+
+--=================================XUẤT XỨ===============================================
+--loaixuatxu là nội địa hay ngoại địa
+
+insert into XUATXU (MAXUATXU, TENXUATXU, LOAIXUATXU)
+values ('NB',N'Nhật Bản',N'Ngoại địa')
+
+insert into XUATXU (MAXUATXU, TENXUATXU, LOAIXUATXU)
+values ('ND',N'Đức',N'Ngoại địa')
+
+insert into XUATXU (MAXUATXU, TENXUATXU, LOAIXUATXU)
+values ('NP',N'Pháp',N'Ngoại địa')
+
+insert into XUATXU (MAXUATXU, TENXUATXU, LOAIXUATXU)
+values ('DN',N'Đà Nẵng',N'Nội địa')
+
+insert into XUATXU (MAXUATXU, TENXUATXU, LOAIXUATXU)
+values ('SG',N'TPHCM',N'Nội địa')
+
+--===================================LOẠI THUỐC=============================================
+
+insert into LOAITHUOC(MALOAITHUOC, MAKE, TENLOAITHUOC)
+values ('D06A','K1',N'Thuốc kháng sinh')
+
+insert into LOAITHUOC(MALOAITHUOC, MAKE, TENLOAITHUOC)
+values ('S01B','K1',N'Thuốc kháng viêm')
+
+insert into LOAITHUOC(MALOAITHUOC, MAKE, TENLOAITHUOC)
+values ('N02B','K2',N'Giảm đau hạ sốt')
+
+insert into LOAITHUOC(MALOAITHUOC, MAKE, TENLOAITHUOC)
+values ('R05C','K3',N'Thuốc ho và long đờm')
+
+insert into LOAITHUOC(MALOAITHUOC, MAKE, TENLOAITHUOC)
+values ('A02B','K4',N'Nhóm dạ dày')
+
+insert into LOAITHUOC(MALOAITHUOC, MAKE, TENLOAITHUOC)
+values ('C01E','K5',N'Nhóm huyết áp tim mạch')
+
+
+--====================================THUỐC======================================
+
+set dateformat dmy;
+insert into THUOC (MATHUOC, MALOAITHUOC, MAHSX, MAXUATXU, TENTHUOC, HINHTHUOC, THANHPHAN, CONGDUNG, BAOQUAN, GHICHUTHUOC, DVT, SOLOTHUOC, NGAYSANXUAT, HANSUDUNG, DONGIATHUOC, SOLUONGTON)
+values ('D06A03','D06A','PHARMA','NP',N'Oxytetracycline',N'C:\Users\Thai Bao\Desktop\Do_An_CNPM\hinhanh\thuoc.png',N'Oxytetracyclin 30 mg, hydrocortison 15 mg, polymyxin B 10.000 đvqt trong 1 gam',N'Sử dụng trong điều trị bệnh tả và bệnh dịch hạch',N'Bảo quản các chế phẩm oxytetracyclin và oxytetracyclin hydroclorid ở nhiệt độ dưới 40oC',N'Hẹp thực quản và/hoặc tắc nghẽn ở đường tiêu hóa. Trẻ em dưới 8 tuổi (nếu dùng uống)',N'Vỉ',32,'18-05-2020','03-03-2021',110000,20)
+
+insert into THUOC (MATHUOC, MALOAITHUOC, MAHSX, MAXUATXU, TENTHUOC, HINHTHUOC, THANHPHAN, CONGDUNG, BAOQUAN, GHICHUTHUOC, DVT, SOLOTHUOC, NGAYSANXUAT, HANSUDUNG, DONGIATHUOC, SOLUONGTON)
+values ('D06A04','D06A','NAMHA','ND',N'Tetracyclin',N'C:\Users\Thai Bao\Desktop\Do_An_CNPM\hinhanh\thuoc.png',N'Viên nén, hàm lượng 250mg hoặc 500mg',N'Sử dụng để điều trị nhiều loại nhiễm trùng khác nhau',N'Bảo quản ở nhiệt độ phòng, tránh ẩm, tránh ánh sáng',N'Tetracyclin có hiệu quả tốt nhất khi dùng lúc bụng đói, khoảng 1 giờ trước hoặc 2 giờ sau khi ăn',N'Hộp',12,'12-02-2019','12-02-2021',120000,25)
+
+insert into THUOC (MATHUOC, MALOAITHUOC, MAHSX, MAXUATXU, TENTHUOC, HINHTHUOC, THANHPHAN, CONGDUNG, BAOQUAN, GHICHUTHUOC, DVT, SOLOTHUOC, NGAYSANXUAT, HANSUDUNG, DONGIATHUOC, SOLUONGTON)
+values ('D06A12','D06A','TRAPHACO','NB',N'Amikacin',N'C:\Users\Thai Bao\Desktop\Do_An_CNPM\hinhanh\thuoc.png',N' Lọ 250 mg hoặc 500 mg bột kèm theo tương ứng 2 ml hoặc 4 ml dung môi',N'Thuốc diệt khuẩn nhanh do gắn hẳn vào tiểu đơn vị 30S của ribosom vi khuẩn và ngăn chặn sự tổng hợp protein của vi khuẩn',N'Giữ ở nhiệt độ phòng, bảo quản được ít nhất 2 năm kể từ ngày sản xuất. Bảo quản tránh ánh sáng',N'Quá mẫn với các aminoglycosid, bệnh nhược cơ',N'Lọ',15,'16-07-2019','16-07-2021',150000,40)
+
+--
+insert into THUOC (MATHUOC, MALOAITHUOC, MAHSX, MAXUATXU, TENTHUOC, HINHTHUOC, THANHPHAN, CONGDUNG, BAOQUAN, GHICHUTHUOC, DVT, SOLOTHUOC, NGAYSANXUAT, HANSUDUNG, DONGIATHUOC, SOLUONGTON)
+values ('S01B01','S01B','PHARMA','SG',N'Dexamethason',N'C:\Users\Thai Bao\Desktop\Do_An_CNPM\hinhanh\thuoc.png',N'Kem dexamethason natri phosphat 1mg/1g',N'Dexamethason được dùng để điều trị các bệnh như sốc do chảy máu, do chấn thương, do phẫu thuật, hoặc do nhiễm khuẩn',N'Bảo quản dưới 250C, tránh ánh sáng, không để đông lạnh',N'Quá mẫn với dexamethason hoặc các hợp phần khác của chế phẩm; nhiễm nấm toàn thân, nhiễm virus tại chỗ hoặc nhiễm khuẩn lao',N'Tuýp',27,'25-09-2018','25-09-2021',230000,30)
+
+insert into THUOC (MATHUOC, MALOAITHUOC, MAHSX, MAXUATXU, TENTHUOC, HINHTHUOC, THANHPHAN, CONGDUNG, BAOQUAN, GHICHUTHUOC, DVT, SOLOTHUOC, NGAYSANXUAT, HANSUDUNG, DONGIATHUOC, SOLUONGTON)
+values ('S01B03','S01B','TRAPHACO','DN',N'Diclofenac',N'C:\Users\Thai Bao\Desktop\Do_An_CNPM\hinhanh\thuoc.png',N'Diclofenac 50mg, sắt III oxid, PVP vd 1 viên',N'Sử dụng để giảm đau, sưng tấy hoặc viêm do các thương tích và các triệu chứng như viêm khớp, viêm thấp khớp, kinh nguyệt',N'bảo quản ở nhiệt độ phòng, tránh ẩm và tránh ánh sáng. Không bảo quản trong phòng tắm hoặc trong ngăn đá',N'Quá mẫn đã biết với hoạt chất hay tá dược của thuốc. Loét dạ dày tá tràng',N'Hộp',14,'12-12-2017','12-12-2019',200000,25)
+
+insert into THUOC (MATHUOC, MALOAITHUOC, MAHSX, MAXUATXU, TENTHUOC, HINHTHUOC, THANHPHAN, CONGDUNG, BAOQUAN, GHICHUTHUOC, DVT, SOLOTHUOC, NGAYSANXUAT, HANSUDUNG, DONGIATHUOC, SOLUONGTON)
+values ('S01B06','S01B','NAMHA','ND',N'Piroxicam',N'C:\Users\Thai Bao\Desktop\Do_An_CNPM\hinhanh\thuoc.png',N'Piroxicam 20mg, tá dược Lactose, Natri starch glycolat',N'Sử dụng để giảm đau, sưng, cứng khớp do bệnh viêm khớp nhằm giúp cải thiện các hoạt động hàng ngày',N'Thuốc tiêm tránh ánh sáng. Viên đạn tránh để nóng',N'Mẫn cảm với piroxicam và các thuốc NSAID khác và aspirin; loét dạ dày tá tràng cấp',N'Hộp',17,'16-07-2018','16-07-2020',250000,35)
+
+--
+insert into THUOC (MATHUOC, MALOAITHUOC, MAHSX, MAXUATXU, TENTHUOC, HINHTHUOC, THANHPHAN, CONGDUNG, BAOQUAN, GHICHUTHUOC, DVT, SOLOTHUOC, NGAYSANXUAT, HANSUDUNG, DONGIATHUOC, SOLUONGTON)
+values ('N02B01','N02B','PHARMA','NP',N'Acid acetylsalicylic',N'C:\Users\Thai Bao\Desktop\Do_An_CNPM\hinhanh\thuoc.png',N'Aspirin 81mg, tá dược vừa đủ 1 viên',N'Có tác dụng giảm đau, hạ nhiệt và chống viêm',N'Để nơi khô ráo và mát. Không dùng nếu thấy mùi dấm',N'Mẫn cảm với acid acetylsalicylic hoặc các thuốc chống viêm không steroid khác',N'Hộp',19,'26-11-2018','26-11-2021',300000,20)
+
+insert into THUOC (MATHUOC, MALOAITHUOC, MAHSX, MAXUATXU, TENTHUOC, HINHTHUOC, THANHPHAN, CONGDUNG, BAOQUAN, GHICHUTHUOC, DVT, SOLOTHUOC, NGAYSANXUAT, HANSUDUNG, DONGIATHUOC, SOLUONGTON)
+values ('N02B11','N02B','TRAPHACO','NB',N'Diflunisal',N'C:\Users\Thai Bao\Desktop\Do_An_CNPM\hinhanh\thuoc.png',N'Diflunisal 500mg, tá dược vừa đủ',N'Ðiều trị triệu chứng (giảm đau) và viêm trong bệnh viêm khớp dạng thấp hoặc viêm xương khớp cấp và mạn',N'Bảo quản thuốc ở nhiệt độ dưới 250C trong bao gói thật kín và tránh ánh sáng',N'Không dùng diflunisal làm thuốc hạ sốt. Quá mẫn với diflunisal',N'Vỉ',22,'05-04-2018','05-04-2020',265000,30)
+
+--
+insert into THUOC (MATHUOC, MALOAITHUOC, MAHSX, MAXUATXU, TENTHUOC, HINHTHUOC, THANHPHAN, CONGDUNG, BAOQUAN, GHICHUTHUOC, DVT, SOLOTHUOC, NGAYSANXUAT, HANSUDUNG, DONGIATHUOC, SOLUONGTON)
+values ('R05C01','R05C','NAMHA','SG',N'Acetylcystein',N'C:\Users\Thai Bao\Desktop\Do_An_CNPM\hinhanh\thuoc.png',N'Acetylcystein 100mg, tá dược vừa đủ',N'Acetylcystein là thuốc thuộc nhóm thuốc long đờm, có tác dụng làm loãng chất nhầy để chúng dễ dàng lưu thông qua phổi',N'Được bảo quản ở nhiệt độ phòng, tránh ẩm, tránh ánh sáng',N'Acetylcysteine chống chỉ định cho bệnh nhân hen suyễn hoặc có tiền sử hen',N'Vỉ',25,'08-05-2018','08-05-2020',220000,25)
+
+insert into THUOC (MATHUOC, MALOAITHUOC, MAHSX, MAXUATXU, TENTHUOC, HINHTHUOC, THANHPHAN, CONGDUNG, BAOQUAN, GHICHUTHUOC, DVT, SOLOTHUOC, NGAYSANXUAT, HANSUDUNG, DONGIATHUOC, SOLUONGTON)
+values ('R05C02','R05C','TRAPHACO','DN',N'Kali iodid',N'C:\Users\Thai Bao\Desktop\Do_An_CNPM\hinhanh\thuoc.png',N'Potassium iodide',N'Làm giảm nhanh các triệu chứng bằng cách ức chế giải phóng hormon giáp vào tuần hoàn',N'Bảo quản thuốc dưới 400C, tốt nhất là trong khoảng 15 đến 300C, trong lọ hoặc hộp kín, tránh ánh sáng',N'Có tiền sử mẫn cảm với kali iodid; người đang bị viêm phế quản cấp',N'Lọ',28,'06-06-2018','06-06-2018',160000,30)
+
+insert into THUOC (MATHUOC, MALOAITHUOC, MAHSX, MAXUATXU, TENTHUOC, HINHTHUOC, THANHPHAN, CONGDUNG, BAOQUAN, GHICHUTHUOC, DVT, SOLOTHUOC, NGAYSANXUAT, HANSUDUNG, DONGIATHUOC, SOLUONGTON)
+values ('R05C05','R05C','PHARMA','ND',N'Mesna',N'C:\Users\Thai Bao\Desktop\Do_An_CNPM\hinhanh\thuoc.png',N'Mesna 200mg, tá dược vừa đủ',N'Mesna có tác dụng ngăn ngừa hoặc giảm thiểu những tác dụng độc hại của hóa trị đối với bàng quang',N'Bảo quản ở nơi khô ráo, tránh ánh sáng, không được để trong ngăn đá hay phòng tắm',N'Quá mẫn với mesna hoặc các phức hợp khác có thiol',N'Hộp',26,'01-10-2019','01-10-2021',180000,35)
+
+--
+insert into THUOC (MATHUOC, MALOAITHUOC, MAHSX, MAXUATXU, TENTHUOC, HINHTHUOC, THANHPHAN, CONGDUNG, BAOQUAN, GHICHUTHUOC, DVT, SOLOTHUOC, NGAYSANXUAT, HANSUDUNG, DONGIATHUOC, SOLUONGTON)
+values ('A02B01','A02B','PHARMA','NP',N'Omeprazol',N'C:\Users\Thai Bao\Desktop\Do_An_CNPM\hinhanh\thuoc.png',N'Omeprazol 20mg, tá dược vừa đủ',N'Thuốc thường được dùng để điều trị bệnh viêm thực quản, trào ngược dạ dày – thực quản, viêm loét dạ dày – tá tràng',N'Bảo quản ở nhiệt độ phòng, tránh ẩm ướt và ánh sáng trực tiếp',N'Dị ứng hoặc mẫn cảm với bất cứ thành phần nào của thuốc',N'Hộp',24,'15-11-2018','15-11-2020',90000,30)
+
+insert into THUOC (MATHUOC, MALOAITHUOC, MAHSX, MAXUATXU, TENTHUOC, HINHTHUOC, THANHPHAN, CONGDUNG, BAOQUAN, GHICHUTHUOC, DVT, SOLOTHUOC, NGAYSANXUAT, HANSUDUNG, DONGIATHUOC, SOLUONGTON)
+values ('A02B03','A02B','NAMHA','DN',N'Lansoprazol',N'C:\Users\Thai Bao\Desktop\Do_An_CNPM\hinhanh\thuoc.png',N'Lansoprazol 30mg, tá dược đủ',N'Lansoprazol được dùng điều trị ngắn ngày chứng loét dạ dày - tá tràng và điều trị dài ngày các chứng tăng tiết dịch tiêu hóa bệnh lý',N'Bảo quản ở nhiệt độ phòng',N'Quá mẫn với lansoprazol hoặc các thành phần khác của thuốc. Có thai trong 3 tháng đầu',N'Vỉ',23,'21-09-2019','21-09-2021',90000,25)
+   
+--
+insert into THUOC (MATHUOC, MALOAITHUOC, MAHSX, MAXUATXU, TENTHUOC, HINHTHUOC, THANHPHAN, CONGDUNG, BAOQUAN, GHICHUTHUOC, DVT, SOLOTHUOC, NGAYSANXUAT, HANSUDUNG, DONGIATHUOC, SOLUONGTON)
+values ('C01E03','C01E','NAMHA','NB',N'Indometacin',N'C:\Users\Thai Bao\Desktop\Do_An_CNPM\hinhanh\thuoc.png',N'Indometacin 25mg',N'Indomethacin có tác dụng giảm đau, hạ sốt, chống viêm và ức chế kết tập tiểu cầu',N'Bảo quản nang indomethacin trong lọ kín ở nhiệt độ 15 - 30oC',N'Người có tiền sử mẫn cảm với indomethacin và các chất tương tự, kể cả với aspirin',N'Lọ',27,'24-12-2018','24-12-2020',130000,30)
+
+insert into THUOC (MATHUOC, MALOAITHUOC, MAHSX, MAXUATXU, TENTHUOC, HINHTHUOC, THANHPHAN, CONGDUNG, BAOQUAN, GHICHUTHUOC, DVT, SOLOTHUOC, NGAYSANXUAT, HANSUDUNG, DONGIATHUOC, SOLUONGTON)
+values ('C01E10','C01E','TRAPHACO','SG',N'Adenosin',N'C:\Users\Thai Bao\Desktop\Do_An_CNPM\hinhanh\thuoc.png',N'Adenosin 30mg',N'Adenosine là thuốc chống loạn nhịp và là một nucleoside',N'Ðể thuốc nơi mát 15 - 300C. Tránh ánh sáng. Không để đông lạnh',N'Người đã có từ trước hội chứng suy nút xoang hay blốc nhĩ thất độ hai hoặc ba mà không cấy máy tạo nhịp',N'Hộp',29,'09-05-2018','09-05-2020',150000,30)
+
+--===================================KỆ THUỐC===========================================
+
+insert into KETHUOC (MAKE, TENKE)
+values ('K1',N'Kệ số 1')
+
+insert into KETHUOC (MAKE, TENKE)
+values ('K2',N'Kệ số 2')
+
+insert into KETHUOC (MAKE, TENKE)
+values ('K3',N'Kệ số 3')
+
+insert into KETHUOC (MAKE, TENKE)
+values ('K4',N'Kệ số 4')
+
+insert into KETHUOC (MAKE, TENKE)
+values ('K5',N'Kệ số 5')
+--=========================================CHI TIẾT PHIẾU NHẬP THUỐC===========================================
+
+insert into CHITIETPHIEUNHAPTHUOC (MAPNT, MATHUOC, SOLUONGNHAPTHUOC, DVT, THANHTIENNT, DONGIABAN)
+values ('PN01','S01B01',3,N'Tuýp',690000,230000)
+
+insert into CHITIETPHIEUNHAPTHUOC (MAPNT, MATHUOC, SOLUONGNHAPTHUOC, DVT, THANHTIENNT, DONGIABAN)
+values ('PN08','N02B11',3,N'Vỉ',795000,265000)
+
+insert into CHITIETPHIEUNHAPTHUOC (MAPNT, MATHUOC, SOLUONGNHAPTHUOC, DVT, THANHTIENNT, DONGIABAN)
+values ('PN05','R05C02',1,N'Lọ',160000,160000)
+
+insert into CHITIETPHIEUNHAPTHUOC (MAPNT, MATHUOC, SOLUONGNHAPTHUOC, DVT, THANHTIENNT, DONGIABAN)
+values ('PN02','A02B01',4,N'Hộp',360000,90000)
+
+insert into CHITIETPHIEUNHAPTHUOC (MAPNT, MATHUOC, SOLUONGNHAPTHUOC, DVT, THANHTIENNT, DONGIABAN)
+values ('PN07','C01E10',2,N'Hộp',300000,150000)
+
+insert into CHITIETPHIEUNHAPTHUOC (MAPNT, MATHUOC, SOLUONGNHAPTHUOC, DVT, THANHTIENNT, DONGIABAN)
+values ('PN04','D06A04',4,N'Hộp',480000,120000)
+
+
+-------------------------------------	TRIGGER	----------------------------------------------
+--trigger So luong ton kho
+--NHAP THUOC
+--Them Chi tiet phieu nhap hang thi so luong ton cua thuoc tang
+CREATE TRIGGER trg_ThemDonHang ON CHITIETPHIEUNHAPTHUOC AFTER INSERT AS
+BEGIN
+	UPDATE THUOC
+	SET SOLUONGTON = SOLUONGTON + (
+		SELECT SOLUONGNHAPTHUOC
+		FROM inserted
+		WHERE MATHUOC = THUOC.MATHUOC
+	)
+	FROM THUOC
+	JOIN inserted ON THUOC.MATHUOC = inserted.MATHUOC
+END
+
+--Xoa Chi tiet phieu dat hang thi so luong ton giam
+CREATE TRIGGER trg_HuyDonDatHang ON CHITIETPHIEUNHAPTHUOC FOR DELETE AS
+BEGIN
+	UPDATE THUOC
+	SET SOLUONGTON = SOLUONGTON - (
+		SELECT SOLUONGNHAPTHUOC
+		FROM deleted
+		WHERE MATHUOC = THUOC.MATHUOC
+	)
+	FROM THUOC
+	JOIN deleted ON THUOC.MATHUOC = deleted.MATHUOC
+END
+
+--Sua chi tiet phieu dat hang thi so luong ton update
+CREATE TRIGGER trg_CapNhatCTDH ON CHITIETPHIEUNHAPTHUOC AFTER UPDATE AS
+BEGIN
+	UPDATE THUOC
+	SET SOLUONGTON = SOLUONGTON -
+		(SELECT SOLUONGNHAPTHUOC FROM deleted WHERE MATHUOC = THUOC.MATHUOC) +
+		(SELECT SOLUONGNHAPTHUOC FROM inserted WHERE MATHUOC = THUOC.MATHUOC)
+	FROM THUOC
+	JOIN deleted ON THUOC.MATHUOC = deleted.MATHUOC
+END
+
+
+--BAN THUOC
+--Them Chi tiet phieu nhap hang thi so luong ton cua thuoc tang
+CREATE TRIGGER trg_ThemDonBanHang ON CHITIETHOADONBAN AFTER INSERT AS
+BEGIN
+	UPDATE THUOC
+	SET SOLUONGTON = SOLUONGTON - (
+		SELECT SOLUONGBAN
+		FROM inserted
+		WHERE MATHUOC = THUOC.MATHUOC
+	)
+	FROM THUOC
+	JOIN inserted ON THUOC.MATHUOC = inserted.MATHUOC
+END
+
+--Xoa Chi tiet phieu dat hang thi so luong ton giam
+CREATE TRIGGER trg_HuyDonBanHang ON CHITIETHOADONBAN FOR DELETE AS
+BEGIN
+	UPDATE THUOC
+	SET SOLUONGTON = SOLUONGTON + (
+		SELECT SOLUONGBAN
+		FROM deleted
+		WHERE MATHUOC = THUOC.MATHUOC
+	)
+	FROM THUOC
+	JOIN deleted ON THUOC.MATHUOC = deleted.MATHUOC
+END
+
+--Sua chi tiet phieu dat hang thi so luong ton update
+CREATE TRIGGER trg_CapNhatCTBH ON CHITIETHOADONBAN AFTER UPDATE AS
+BEGIN
+	UPDATE THUOC
+	SET SOLUONGTON = SOLUONGTON +
+		(SELECT SOLUONGBAN FROM deleted WHERE MATHUOC = THUOC.MATHUOC) -
+		(SELECT SOLUONGBAN FROM inserted WHERE MATHUOC = THUOC.MATHUOC)
+	FROM THUOC
+	JOIN deleted ON THUOC.MATHUOC = deleted.MATHUOC
+END
+
+--Trigger Xoa Don Ban Hang
+CREATE TRIGGER trg_XoaDonBanHang ON HOADONBAN
+instead of delete
+AS
+begin
+    DELETE FROM CHITIETHOADONBAN
+    WHERE exists (SELECT MAHDB FROM deleted where deleted.MAHDB = CHITIETHOADONBAN.MAHDB)
+	DELETE FROM HOADONBAN
+    WHERE exists (SELECT MAHDB FROM deleted where deleted.MAHDB = HOADONBAN.MAHDB)
+end
+GO
+
+--Trigger Xoa Don Dat Hang
+CREATE TRIGGER trg_XoaDonDatHang ON PHIEUNHAPTHUOC
+instead of delete
+AS
+begin
+    DELETE FROM CHITIETPHIEUNHAPTHUOC
+    WHERE exists (SELECT MAPNT FROM deleted where deleted.MAPNT = CHITIETPHIEUNHAPTHUOC.MAPNT)
+	DELETE FROM PHIEUNHAPTHUOC
+    WHERE exists (SELECT MAPNT FROM deleted where deleted.MAPNT = PHIEUNHAPTHUOC.MAPNT)
+end
+GO
+
+
+--Trigger Xoa Thuoc
+CREATE TRIGGER trg_XoaThuoc ON THUOC
+instead of delete
+AS
+begin
+    DELETE FROM CHITIETHOADONBAN
+    WHERE exists (SELECT MATHUOC FROM deleted where deleted.MATHUOC = CHITIETHOADONBAN.MATHUOC)
+	DELETE FROM CHITIETPHIEUNHAPTHUOC
+    WHERE exists (SELECT MATHUOC FROM deleted where deleted.MATHUOC = CHITIETPHIEUNHAPTHUOC.MATHUOC)
+	DELETE FROM THUOC
+	WHERE EXISTS (SELECT MATHUOC FROM deleted WHERE deleted.MATHUOC = THUOC.MATHUOC)
+end
+GO
+
+--Trigger Xoa KhachHang
+CREATE TRIGGER trg_XoaKH ON KHACHHANG
+instead of delete
+AS
+begin
+    DELETE FROM HOADONBAN
+    WHERE exists (SELECT MAKH FROM deleted where deleted.MAKH = HOADONBAN.MAKH)
+	DELETE FROM KHACHHANG
+	WHERE EXISTS (SELECT MAKH FROM deleted WHERE deleted.MAKH = KHACHHANG.MAKH)
+end
+GO
+
+--Trigger XoaNV
+CREATE TRIGGER trg_XoaNV ON NHANVIEN
+instead of delete
+AS
+begin
+    DELETE FROM CHAMCONG
+    WHERE exists (SELECT MANV FROM deleted where deleted.MANV = CHAMCONG.MANV)
+	DELETE FROM BANGLUONG
+	WHERE EXISTS (SELECT MANV FROM deleted WHERE deleted.MANV = BANGLUONG.MANV)
+	DELETE FROM NHANVIEN
+	WHERE EXISTS (SELECT MANV FROM deleted WHERE deleted.MANV = NHANVIEN.MANV)
+end
+GO
+
+--Trigger XoaKeThuoc
+CREATE TRIGGER trg_XoaKe ON KeThuoc
+instead of delete
+AS
+begin
+    DELETE FROM LOAITHUOC
+    WHERE exists (SELECT MAKE FROM deleted where deleted.MAKE = LOAITHUOC.MAKE)
+	DELETE FROM KETHUOC
+	WHERE EXISTS (SELECT MAKE FROM deleted WHERE deleted.MAKE = KETHUOC.MAKE)
+end
+GO
+
+--Trigger XoaLoaiThuoc
+CREATE TRIGGER trg_XoaLoaiThuoc ON LOAITHUOC
+instead of delete
+AS
+begin
+    DELETE FROM THUOC
+    WHERE exists (SELECT MALOAITHUOC FROM deleted where deleted.MALOAITHUOC = THUOC.MALOAITHUOC)
+	DELETE FROM LOAITHUOC
+	WHERE EXISTS (SELECT MALOAITHUOC FROM deleted WHERE deleted.MALOAITHUOC = LOAITHUOC.MALOAITHUOC)
+end
+GO
+
+-- trigger kiểm tra số lượng sản phẩm tồn > số lượng bán không 
+
+CREATE TRIGGER KTRASLUONGTON ON CHITIETHOADONBAN FOR INSERT
+AS
+BEGIN
+	DECLARE @SOLUONGTON INT;
+	DECLARE @SOLUONGBAN INT;
+	SELECT @SOLUONGBAN= inserted.SOLUONGBAN FROM inserted;
+	SELECT @SOLUONGTON= THUOC.SOLUONGTON FROM inserted,THUOC WHERE inserted.MATHUOC= THUOC.MATHUOC;
+	IF (@SOLUONGBAN > @SOLUONGTON)
+		BEGIN
+			RAISERROR (N'SỐ LƯỢNG SẢN PHẨM KHÔNG ĐỦ ĐỂ ĐÁP ỨNG',16,1)
+			ROLLBACK TRANSACTION;
+		END
+END
+
+
+--- KIỂM TRA SỐ LƯỢNG TỒN CÓ BẰNG KHÔNG
+
+CREATE TRIGGER KT_SLTonBANG0 on THUOC 
+INSTEAD OF INSERT
+AS
+DECLARE @mathuoc NCHAR(30);
+DECLARE @maloaithuoc NCHAR(30);
+DECLARE @mahsx NCHAR(30);
+DECLARE @tenthuoc INT;
+DECLARE @slTon INT;
+
+SELECT @mathuoc=MATHUOC FROM inserted;
+SELECT @slTon=SOLUONGTON FROM inserted;
+BEGIN 
+	SELECT @slTon=Count(*) FROM THUOC T 
+	INNER JOIN CHITIETHOADONBAN HD on HD.MATHUOC=T.MATHUOC
+	WHERE T.SOLUONGTON -(T.SOLUONGTON*@slTon) <0
+IF(@slTon=0)
+	BEGIN
+		RAISERROR (N'SỐ LƯỢNG SẢN PHẨM KHÔNG ĐỦ ĐỂ ĐÁP ỨNG CẦN NHẬP THÊM',16,1)
+		ROLLBACK TRANSACTION;
+	END;
+END;
+
+-- TỔNG DOANH THU TIỆM THUỐC THEO THÁNG
+CREATE PROC THONGKE_DOANHTHU
+	@ThangDauVao DATETIME,
+	@ThangCuoi DATETIME,
+	@@TongDoanhThu FLOAT OUTPUT
+	AS
+	BEGIN
+	IF (@ThangDauVao<=@ThangCuoi)
+	BEGIN
+		SELECT SUM (HOADONBAN.TONGTIENBAN) AS N'TỔNG DOANH THU HỆ THỐNG'
+		FROM HOADONBAN 
+		WHERE NGAYLAPBAN>=@ThangDauVao AND NGAYLAPBAN<=@ThangCuoi
+		SELECT @@TongDoanhThu=(SELECT SUM (HOADONBAN.TONGTIENBAN)
+		FROM HOADONBAN 
+		WHERE NGAYLAPBAN>=@ThangDauVao AND NGAYLAPBAN<=@ThangCuoi);
+	END; 
+	ELSE
+		PRINT N'THỜI GIAN BẮT ĐẦU SAU LỚN HƠN THỜI GIAN KẾT THÚC THẾ !!';
+	END;
+
+DECLARE @@TongDoanhThuShop FLOAT
+EXEC THONGKE_DOANHTHU '04/11/2019','04/20/2021',@@TongDoanhThuShop
+OUTPUT 
+	IF(@@TongDoanhThuShop>100000)
+		PRINT N'TỔNG DOANH THU TIỆM LÀ: '+Cast (@@TongDoanhThuShop AS NVARCHAR(100))
+	ELSE
+		PRINT N'TỔNG DOANH THU ÍT THẾ TA!' 

@@ -1,0 +1,6 @@
+E:\New folder\PTPM\PTPM\Do_An_PTPM\DAL_BLL\bin\Debug\DAL_BLL.dll.config
+E:\New folder\PTPM\PTPM\Do_An_PTPM\DAL_BLL\bin\Debug\DAL_BLL.dll
+E:\New folder\PTPM\PTPM\Do_An_PTPM\DAL_BLL\bin\Debug\DAL_BLL.pdb
+E:\New folder\PTPM\PTPM\Do_An_PTPM\DAL_BLL\obj\Debug\DAL_BLL.csprojResolveAssemblyReference.cache
+E:\New folder\PTPM\PTPM\Do_An_PTPM\DAL_BLL\obj\Debug\DAL_BLL.dll
+E:\New folder\PTPM\PTPM\Do_An_PTPM\DAL_BLL\obj\Debug\DAL_BLL.pdb
